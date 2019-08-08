@@ -2,6 +2,8 @@
 from django.conf.urls import url
 from . import views
 from django.urls import path, re_path
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 app_name = 'crm'
 urlpatterns = [
@@ -23,5 +25,8 @@ urlpatterns = [
 
 
     path('customer/<int:pk>/summary/', views.summary, name='summary'),
+    url(r'^customers_json/', views.CustomerList.as_view()),
 
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
